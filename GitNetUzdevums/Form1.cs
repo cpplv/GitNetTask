@@ -77,5 +77,35 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            double m = 30; //scale
+            int xc = pictureBox2.Width / 2;   // center coordinates
+            int yc = pictureBox2.Height / 2;
+            int xe, ye;     // point "screen" coordinates
+            double x, y;   // point "math" coordinates
+            double step = 0.005;    // step
+            Graphics G = pictureBox2.CreateGraphics();
+            G.Clear(System.Drawing.Color.White);
+            Pen myPen = new Pen(Color.Silver);
+            G.DrawLine(myPen, 10, yc, 2 * xc - 10, yc);   // axes
+            G.DrawLine(myPen, xc, 10, xc, 2 * yc - 10);
+            myPen = new Pen(Color.Black);
+            x = -Math.PI;
+            // function graph design loop
+            while (x < Math.PI)
+            {
+                try   // if the function does not exist at any point 
+                {
+                    y = Math.Sin(x); // New Function Formula: y = sin(x)
+                    xe = (int)(xc + m * x);
+                    ye = (int)(yc - m * y);
+                    G.DrawEllipse(myPen, xe, ye, 1, 1);
+                }
+                catch { }
+                x += step;
+            }
+        }
     }
 }
