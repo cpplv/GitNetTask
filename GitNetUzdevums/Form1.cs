@@ -77,5 +77,37 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DrawMyFunction();
+        }
+        private void DrawMyFunction()
+        {
+            double m = 30; 
+            int xc = pictureBox1.Width / 2; 
+            int yc = pictureBox1.Height / 2;
+            double step = 0.005;
+            Graphics G = pictureBox1.CreateGraphics();
+            G.Clear(Color.White);
+            Pen myPen = new Pen(Color.Black);
+            double x = -Math.PI;
+
+            while (x < Math.PI)
+            {
+                try
+                {
+                    double y = Math.Cos(x);
+                    int xe = (int)(xc + m * x);
+                    int ye = (int)(yc - m * y);
+                    G.DrawEllipse(myPen, xe, ye, 1, 1);
+                }
+                catch
+                {
+
+                }
+                x += step;
+            }
+        }
     }
 }
